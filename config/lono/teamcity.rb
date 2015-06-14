@@ -1,11 +1,14 @@
 require 'json'
 
 chef_json = {
-  'run_list' => ['apt', 'mount', 'iptables-ng', 'teamcity'],
-  'iptables-ng' =>
-  {
-    'rules' =>
-    {
+  'run_list' => ['apt', 'mount', 'iptables-ng', 'teamcity', 'rbenv-install-rubies'],
+  'mount' => {
+    'devices' => [
+      {'name' => '/dev/xvdf', 'path' => '/data', 'format' => 'ext4'}
+    ]
+  },
+  'iptables-ng' => {
+    'rules' => {
       'filter' => {
         'INPUT' => {
           '1-established' => {'rule' => '-m state --state ESTABLISHED,RELATED -j ACCEPT'},
@@ -14,22 +17,34 @@ chef_json = {
           '4-ssh' => {'rule' => '-m state --state NEW -m tcp -p tcp --dport 22 -j ACCEPT'},
           '5-http' => {'rule' => '-m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT'},
           '6-teamcity' => {'rule' => '-m state --state NEW -m tcp -p tcp --dport 8111 -j ACCEPT'},
-          '7-reject' => {'rule' => '-j REJECT'}},
+          '7-reject' => {'rule' => '-j REJECT'}
+        },
         'FORWARD' => {
-          '1-reject' => {'rule' => '-j REJECT'}}},
+          '1-reject' => {'rule' => '-j REJECT'}
+        }
+      },
       'nat' => {
         'PREROUTING' => {
-          '1-teamcity' => {'rule' => '-p tcp --dport 80 -j REDIRECT --to-port 8111'}}
+          '1-teamcity' => {'rule' => '-p tcp --dport 80 -j REDIRECT --to-port 8111'}
         }
       }
-    },
+    }
+  },
   'teamcity' => {
     'log_path' => '/data/teamcity/logs',
-    'data_path' => '/data/teamcity/.BuildServer'
+    'data_path' => '/data/teamcity/.BuildServer',
+    'server_mem_opts' => '-Xms750m -Xmx750m -XX:MaxPermSize=270m'
+  },
+  'rbenv' => {
+    'group_users' => ['teamcity']
+  },
+  'rbenv_install_rubies' => {
+    'global_version' => '1.9.3-p551',
+    'gems' => ['bundler', 'rake']
   }
 }
 
-template "teamcity.0.1.0.json" do
+template "teamcity.0.2.0.json" do
   source 'instance_store_instance_with_data_volume.json.erb'
   variables(
     stack_description: 'TeamCity Server',
