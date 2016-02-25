@@ -4,7 +4,7 @@ require 'dotenv'
 
 Dotenv.load
 
-task default: [:generate_templates, :validate_templates, :upload_templates]
+task default: [:generate, :validate, :upload]
 
 desc 'Generate templates using lono'
 task :generate do
@@ -30,14 +30,14 @@ task :validate do
   if errors.any?
     raise errors.join("\n")
   else
-    puts 'All templates valid'
+    puts 'Template validation complete'
   end
 end
 
 desc 'Upload generated templates to S3'
 task :upload do
   s3 = Aws::S3::Resource.new
-  bucket = s3.bucket(ENV('AWS_TEMPLATES_BUCKET'))
+  bucket = s3.bucket(ENV['AWS_TEMPLATES_BUCKET'])
   template_paths = Dir['output/*.json']
 
   puts 'Uploading templates...'

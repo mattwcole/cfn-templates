@@ -1,7 +1,7 @@
 require 'json'
 
 chef_json = {
-  'run_list' => ['apt', 'mount', 'iptables-ng', 'teamcity', 'rbenv-install-rubies'],
+  'run_list' => ['mount', 'iptables-ng', 'teamcity', 'rbenv-install-rubies'],
   'mount' => {
     'devices' => [
       {'name' => '/dev/xvdf', 'path' => '/data', 'format' => 'ext4'}
@@ -44,18 +44,21 @@ chef_json = {
   }
 }
 
-template "teamcity.0.2.0.json" do
+template 'teamcity.json' do
   source 'instance_store_instance_with_data_volume.json.erb'
   variables(
+    init_script: 'ubuntu_init.sh',
     stack_description: 'TeamCity Server',
-    data_volume_name: 'Data',
+    data_volume_name: 'DataVolume',
     data_volume_size: 20,
     security_groups: ['teamcity'],
+    default_key_name: 'teamcity',
     dns_record: 'teamcity.matt-cole.co.uk.',
+    instance_start_timeout: 'PT20M',
     ami_map: AwsConstants::UBUNTU_14_04_INSTANCE_STORE_MAP,
     chef_json: chef_json,
     chef_server_url: ENV['CHEF_SERVER_URL'],
     chef_validation_client_name: ENV['CHEF_VALIDATION_CLIENT_NAME'],
     chef_validation_key: ENV['CHEF_VALIDATION_KEY'],
-    chef_version: ENV['CHEF_CLIENT_VERSION'])
+    chef_version: ENV['CHEF_VERSION'])
 end

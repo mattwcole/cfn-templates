@@ -19,6 +19,7 @@
     },
     "KeyName": {
       "Type": "AWS::EC2::KeyPair::KeyName",
+      "Default": "<%= @default_key_name %>",
       "ConstraintDescription": "Must be the name of an existing EC2 Key Pair"
     },
     "InstanceType": {
@@ -240,10 +241,21 @@
             "Fn::Join": [
               "",
               [
-                <%= user_data('chef_bootstrap.sh.erb') %>
+                <%= user_data(@init_script) + ',' if defined?(@init_script) %>
+                <%= user_data('chef_bootstrap.sh.erb') %>, "\n",
+                "# signal the status from cfn-init\n",
+                "cfn-signal -e $?",
+                " --stack ", { "Ref" : "AWS::StackName" },
+                " --resource EC2Instance",
+                " --region ", { "Ref" : "AWS::Region" }, "\n"
               ]
             ]
           }
+        }
+      },
+      "CreationPolicy" : {
+        "ResourceSignal" : {
+          "Timeout" : "<%= @instance_start_timeout || 'PT10M' %>"
         }
       },
       "Type": "AWS::EC2::Instance"
@@ -262,7 +274,7 @@
             ]
           }
         ],
-        "TTL": "900"
+        "TTL": "60"
       }
     }
   },
