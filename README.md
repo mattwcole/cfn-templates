@@ -1,2 +1,2 @@
 # CloudFormation Templates
-[![#](https://img.shields.io/teamcity/http/teamcity.matt-cole.co.uk/s/Infrastucture_Aws_CloudFormationTemplates.svg)](http://teamcity.matt-cole.co.uk/viewType.html?buildTypeId=Infrastucture_Aws_CloudFormationTemplates&guest=1)
+[![Build Status](https://travis-ci.org/mattwcole/cfn-templates.svg?branch=master)](https://travis-ci.org/mattwcole/cfn-templates)
