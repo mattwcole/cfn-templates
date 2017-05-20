@@ -9,9 +9,9 @@ chef_json = {
     'mount_device' => '/dev/xvdf',
     'memory' => '2048',
     'server_name' => 'minecloud',
-    'jar_url' => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.9/minecraft_server.1.9.jar',
-    'jar_checksum' => '38a797f50c71f55202e2135a30302cf3a5c8cb494c6d225b88599542957d3a7d',
-    'version' => '1.9',
+    'jar_url' => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.11.2/minecraft_server.1.11.2.jar',
+    'jar_checksum' => 'dec47d36b429fd05076b90b1f42c2a25138bc39204aa51b9674ef2a98d64d88a',
+    'version' => '1.11.2',
     'properties' => {
       'difficulty' => '3',
       'white-list' => 'true'
@@ -41,16 +41,16 @@ chef_json = {
   }
 }
 
-template 'minecraft.json' do
+template 'minecraft2.json' do
   source 'ebs_instance_with_data_volume.json.erb'
   variables(
     init_script: 'ubuntu_init.sh',
-    stack_description: 'Old Minecloud Server @1.9 (minecraft-old.matt-cole.co.uk)',
+    stack_description: 'Minecraft Server @1.11.2 (minecraft.matt-cole.co.uk)',
     data_volume_name: 'DataVolume',
     data_volume_size: 20,
     security_groups: ['minecraft'],
     default_key_name: 'minecraft',
-    dns_record: 'minecraft-old.matt-cole.co.uk.',
+    dns_record: 'minecraft.matt-cole.co.uk.',
     instance_start_timeout: 'PT10M',
     ami_map: AwsConstants::UBUNTU_14_04_EBS_SSD_MAP,
     chef_json: chef_json,
