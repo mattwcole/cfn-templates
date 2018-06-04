@@ -9,9 +9,9 @@ chef_json = {
     'mount_device' => '/dev/xvdf',
     'memory' => '2048',
     'server_name' => 'minecloud',
-    'jar_url' => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.11.2/minecraft_server.1.11.2.jar',
-    'jar_checksum' => 'dec47d36b429fd05076b90b1f42c2a25138bc39204aa51b9674ef2a98d64d88a',
-    'version' => '1.11.2',
+    'jar_url' => 'https://s3.amazonaws.com/Minecraft.Download/versions/1.12/minecraft_server.1.12.jar',
+    'jar_checksum' => 'feebff3834e41cc096522525707d2dd27adc2431b1f3145b9d0ccfc4c8a3dc09',
+    'version' => '1.12',
     'properties' => {
       'difficulty' => '3',
       'white-list' => 'true'
@@ -28,16 +28,28 @@ chef_json = {
       'alexinnes',
       'Nixoninnes',
       'F_flirsten',
-      'Junsui67'
+      'Junsui67',
+      'Ansenia',
+      'Wee_fee',
+      'Souljacker'
     ]
   },
   'mc-mapcrafter' => {
     'map_name' => 'Minecloud',
     'world_folder' => '/state/msm/servers/minecloud/world',
-    'install_dir' => '/state/mapcrafter'
+    'install_dir' => '/state/mapcrafter',
+    'repository' => {
+      'uri' => 'http://packages.mapcrafter.org/ubuntu',
+      'components' => ['main'],
+      'keyserver' => 'packages.mapcrafter.org',
+      'key' => 'http://packages.mapcrafter.org/ubuntu/keyring.gpg'
+    }
   },
   'nginx' => {
     'default_root' => '/state/mapcrafter/output'
+  },
+  'java' => {
+    'jdk_version' => '8'
   }
 }
 
@@ -45,7 +57,7 @@ template 'minecraft2.json' do
   source 'ebs_instance_with_data_volume.json.erb'
   variables(
     init_script: 'ubuntu_init.sh',
-    stack_description: 'Minecraft Server @1.11.2 (minecraft.matt-cole.co.uk)',
+    stack_description: 'Minecraft Server @1.12 (minecraft.matt-cole.co.uk)',
     data_volume_name: 'DataVolume',
     data_volume_size: 20,
     security_groups: ['minecraft'],
