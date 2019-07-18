@@ -31,7 +31,8 @@ chef_json = {
       'Junsui67',
       'Ansenia',
       'Wee_fee',
-      'Souljacker'
+      'Souljacker',
+      'MariaLilje'
     ]
   },
   'mc-mapcrafter' => {
