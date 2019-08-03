@@ -1,5 +1,5 @@
 chef_json = {
-  'run_list' => ['mount', 'mc-minecraft', 'nginx'],
+  'run_list' => ['mount', 'apt', 'mc-minecraft', 'mc-mapcrafter', 'nginx'],
   'mount' => {
     'devices' => [
       {'name' => '/dev/xvdf', 'path' => '/state', 'format' => 'ext4'}
@@ -67,7 +67,7 @@ template 'minecraft-2019.json' do
     default_key_name: 'minecraft',
     dns_record: 'minecraft.matt-cole.co.uk.',
     instance_start_timeout: 'PT10M',
-    ami_map: AwsConstants::UBUNTU_14_04_EBS_SSD_MAP,
+    ami_map: AwsConstants::UBUNTU_16_04_EBS_SSD_MAP,
     chef_json: chef_json,
     chef_server_url: ENV['CHEF_SERVER_URL'],
     chef_validation_client_name: ENV['CHEF_VALIDATION_CLIENT_NAME'],
