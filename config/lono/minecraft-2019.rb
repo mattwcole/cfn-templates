@@ -11,7 +11,7 @@ chef_json = {
     'server_name' => 'minecloud',
     'jar_url' => 'https://launcher.mojang.com/v1/objects/d0d0fe2b1dc6ab4c65554cb734270872b72dadd6/server.jar',
     'jar_checksum' => '942256f0bfec40f2331b1b0c55d7a683b86ee40e51fa500a2aa76cf1f1041b38',
-    'version' => '1.14.2',
+    'version' => '1.14.3',
     'properties' => {
       'difficulty' => '3',
       'white-list' => 'true'
@@ -60,7 +60,7 @@ template 'minecraft-2019.json' do
   source 'ebs_instance_with_data_volume.json.erb'
   variables(
     init_script: 'ubuntu_init.sh',
-    stack_description: 'Minecraft Server @1.14.2 (minecraft.matt-cole.co.uk)',
+    stack_description: 'Minecraft Server @1.14.3 (minecraft.matt-cole.co.uk)',
     data_volume_name: 'DataVolume',
     data_volume_size: 20,
     security_groups: ['minecraft'],
