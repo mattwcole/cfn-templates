@@ -1,5 +1,5 @@
 chef_json = {
-  'run_list' => ['mount', 'apt', 'mc-minecraft', 'mc-mapcrafter', 'nginx'],
+  'run_list' => ['mount', 'apt', 'mc-minecraft', 'nginx'],
   'mount' => {
     'devices' => [
       {'name' => '/dev/xvdf', 'path' => '/state', 'format' => 'ext4'}
