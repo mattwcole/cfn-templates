@@ -18,7 +18,7 @@ chef_json = {
     },
     'white-list' => [
       'beastageddon',
-      'Orion04',
+      'AFKGlen',
       'LastRollo',
       'ZackDankra',
       'Penagon',
@@ -34,7 +34,8 @@ chef_json = {
       'Souljacker',
       'MariaLilje',
       'PumbaBerry',
-      'zuljalar'
+      'zuljalar',
+      'Kaolith'
     ]
   },
   'mc-mapcrafter' => {
