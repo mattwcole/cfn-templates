@@ -20,6 +20,7 @@ chef_json = {
       'beastageddon',
       'AFKGlen',
       'LastRollo',
+      'cagnog',
       'ZackDankra',
       'Penagon',
       'doubtfultiger',
