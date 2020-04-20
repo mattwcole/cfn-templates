@@ -24,7 +24,7 @@
     },
     "InstanceType": {
       "Type": "String",
-      "Default": "t2.medium",
+      "Default": "c5.large",
       "AllowedValues": [
         "t1.micro", "t2.micro", "t2.small", "t2.medium",
         "m1.small", "m1.medium", "m1.large", "m1.xlarge",
@@ -40,7 +40,8 @@
         "hs1.8xlarge",
         "cr1.8xlarge",
         "cc2.8xlarge",
-        "cg1.4xlarge"
+        "cg1.4xlarge",
+        "c5.large"
       ],
       "ConstraintDescription": "Must be a valid EBS backed EC2 Instance Type"
     }
@@ -168,6 +169,9 @@
         "Arch": "HVM64"
       },
       "t2.small": {
+        "Arch": "HVM64"
+      },
+      "c5.large": {
         "Arch": "HVM64"
       }
     },

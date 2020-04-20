@@ -2,11 +2,11 @@ chef_json = {
   'run_list' => ['mount', 'apt', 'mc-minecraft', 'nginx'],
   'mount' => {
     'devices' => [
-      {'name' => '/dev/xvdf', 'path' => '/state', 'format' => 'ext4'}
+      {'name' => '/dev/nvme1n1', 'path' => '/state', 'format' => 'ext4'}
     ]
   },
   'mc-minecraft' => {
-    'mount_device' => '/dev/xvdf',
+    'mount_device' => '/dev/nvme1n1',
     'memory' => '2048',
     'server_name' => 'minecloud',
     'jar_url' => 'https://launcher.mojang.com/v1/objects/bb2b6b1aefcd70dfd1892149ac3a215f6c636b07/server.jar',
