@@ -37,7 +37,8 @@ chef_json = {
       'PumbaBerry',
       'zuljalar',
       'Kaolith',
-      'Sheepy1993'
+      'Sheepy1993',
+      'Coati124'
     ]
   },
   'mc-mapcrafter' => {
