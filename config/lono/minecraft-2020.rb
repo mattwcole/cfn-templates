@@ -1,5 +1,5 @@
 chef_json = {
-  'run_list' => ['mount', 'apt', 'mc-minecraft', 'nginx'],
+  'run_list' => ['mount', 'apt', 'mc-minecraft', 'overviewer', 'nginx'],
   'mount' => {
     'devices' => [
       {'name' => '/dev/nvme1n1', 'path' => '/state', 'format' => 'ext4'}
@@ -53,7 +53,7 @@ chef_json = {
     }
   },
   'nginx' => {
-    'default_root' => '/state/mapcrafter/output'
+    'default_root' => '/state/overviewer'
   },
   'java' => {
     'jdk_version' => '8'
