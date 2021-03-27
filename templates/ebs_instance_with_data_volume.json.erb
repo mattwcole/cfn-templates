@@ -269,7 +269,7 @@
     "Route53RecordSet": {
       "Type": "AWS::Route53::RecordSet",
       "Properties": {
-        "HostedZoneName": "<%= @dns_record %>",
+        "HostedZoneName": "<%= @hosted_zone_name || @dns_record %>",
         "Name": "<%= @dns_record %>",
         "Type": "A",
         "ResourceRecords": [
