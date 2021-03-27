@@ -44,12 +44,13 @@ template 'rumpus-2020.json' do
   source 'ebs_instance_with_data_volume.json.erb'
   variables(
     init_script: 'ubuntu_init.sh',
-    stack_description: 'Minecraft Server @1.16.4 (rumpus.matt-cole.co.uk)',
+    stack_description: 'Minecraft Server @1.16.4 (rumpus.aws.matt-cole.co.uk)',
     data_volume_name: 'DataVolume',
     data_volume_size: 20,
     security_groups: ['minecraft'],
     default_key_name: 'minecraft',
-    dns_record: 'rumpus.matt-cole.co.uk.',
+    hosted_zone_name: 'aws.matt-cole.co.uk.',
+    dns_record: 'rumpus.aws.matt-cole.co.uk.',
     instance_start_timeout: 'PT10M',
     ami_map: AwsConstants::UBUNTU_16_04_EBS_SSD_MAP,
     chef_json: chef_json,

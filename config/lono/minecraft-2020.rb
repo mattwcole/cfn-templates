@@ -11,7 +11,7 @@ chef_json = {
     'server_name' => 'minecloud',
     'jar_url' => 'https://launcher.mojang.com/v1/objects/a412fd69db1f81db3f511c1463fd304675244077/server.jar',
     'jar_checksum' => '2782d547724bc3ffc0ef6e97b2790e75c1df89241f9d4645b58c706f5e6c935b',
-    'version' => '1.16.2',
+    'version' => '1.16.1',
     'properties' => {
       'difficulty' => '3',
       'white-list' => 'true'
@@ -64,12 +64,13 @@ template 'minecraft-2020.json' do
   source 'ebs_instance_with_data_volume.json.erb'
   variables(
     init_script: 'ubuntu_init.sh',
-    stack_description: 'Minecraft Server 2020 @1.16.2 (minecraft.matt-cole.co.uk)',
+    stack_description: 'Minecraft Server 2020 @1.16.1 (minecraft-2020.aws.matt-cole.co.uk)',
     data_volume_name: 'DataVolume',
     data_volume_size: 20,
     security_groups: ['minecraft'],
     default_key_name: 'minecraft',
-    dns_record: 'minecraft.matt-cole.co.uk.',
+    hosted_zone_name: 'aws.matt-cole.co.uk.',
+    dns_record: 'minecraft-2020.aws.matt-cole.co.uk.',
     instance_start_timeout: 'PT10M',
     ami_map: AwsConstants::UBUNTU_16_04_EBS_SSD_MAP,
     chef_json: chef_json,
