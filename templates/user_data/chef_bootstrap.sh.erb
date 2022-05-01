@@ -161,7 +161,7 @@ do_download() {
   return 16
 }
 
-install_sh="https://www.opscode.com/chef/install.sh"
+install_sh="https://omnitruck.chef.io/install.sh"
 if ! exists /usr/bin/chef-client || ! chef-client -v | grep "^Chef: <%= @chef_version %>$" >/dev/null; then
   echo "-----> Installing Chef Omnibus (-v <%= @chef_version %>)"
   do_download ${install_sh} $tmp_dir/install.sh
@@ -187,6 +187,7 @@ log_location              STDOUT
 node_name                 "<%= ref('AWS::StackName') %>"
 chef_server_url           "<%= @chef_server_url %>"
 validation_client_name    "<%= @chef_validation_client_name %>"
+chef_license              accept
 EOP
 
 cat > /etc/chef/first-boot.json <<EOP
