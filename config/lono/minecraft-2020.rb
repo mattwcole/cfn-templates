@@ -1,5 +1,5 @@
 chef_json = {
-  'run_list' => ['mount', 'apt', 'mc-minecraft', 'overviewer', 'nginx'],
+  'run_list' => ['mount', 'apt', 'mc-minecraft'],
   'mount' => {
     'devices' => [
       {'name' => '/dev/nvme1n1', 'path' => '/state', 'format' => 'ext4'}
@@ -51,6 +51,9 @@ chef_json = {
       'keyserver' => 'packages.mapcrafter.org',
       'key' => 'http://packages.mapcrafter.org/ubuntu/keyring.gpg'
     }
+  },
+  'overviewer' => {
+
   },
   'nginx' => {
     'default_root' => '/state/overviewer'
